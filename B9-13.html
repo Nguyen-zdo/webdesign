@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title> addEventListener vs onclick</title>
+  <style>
+    p {
+      cursor: pointer;
+      color: blue;
+      font-size: 18px;
+      margin: 10px;
+    }
+    .home-button {
+      position:fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgb(16, 160, 134);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+    }.home-button:hover {
+      background-color:#00CED1;}
+  </style>
+</head>
+<body>
+    <a href="index.html" class="home-button">Trang Chủ</a>
+  <h2>Ví dụ với onclick (gán trực tiếp)</h2>
+  <p id="onclick-example">Click vào đây (onclick)</p>
+
+  <h2>Ví dụ với addEventListener()</h2>
+  <p id="eventlistener-example">Click vào đây (addEventListener)</p>
+
+  <script>
+    // Ví dụ với onclick (bị ghi đè)
+    var onclickPara = document.getElementById("onclick-example");
+
+    onclickPara.onclick = function myFunction() {
+      alert("Hello World! (onclick)");
+    };
+
+    // Hàm sau sẽ ghi đè lên hàm trước
+    onclickPara.onclick = function someOtherFunction() {
+      alert("This function was also executed! (onclick)");
+    };
+
+    // Ví dụ với addEventListener (gọi cả 2 hàm)
+    var listenerPara = document.getElementById("eventlistener-example");
+
+    function myFunction() {
+      alert("Hello World! (addEventListener)");
+    }
+
+    function someOtherFunction() {
+      alert("This function was also executed! (addEventListener)");
+    }
+
+    listenerPara.addEventListener("click", myFunction);
+    listenerPara.addEventListener("click", someOtherFunction);
+  </script>
+
+</body>
+</html>
